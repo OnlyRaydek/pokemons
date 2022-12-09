@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GetPokemon } from '../../actions/pokemonActions';
 
+import './styles.scss';
+
 const Pokemon = (props) => {
     const pokemonName = props.match.params.pokemon;
     const dispatch = useDispatch();
@@ -22,9 +24,6 @@ const Pokemon = (props) => {
                     <div className="item">
                         <h1>Sprites</h1>
                         <img src={pokeData.sprites.front_default} alt=""/>
-                        <img src={pokeData.sprites.back_default} alt=""/>
-                        <img src={pokeData.sprites.front_shiny} alt=""/>
-                        <img src={pokeData.sprites.back_shiny} alt=""/>
                     </div>
                     <div className="item">
                         <h1>Stats</h1>

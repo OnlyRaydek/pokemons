@@ -9,6 +9,8 @@ import FilterByType from '../FilterByType';
 
 import { GetPokemonList, GetPokemonTypes } from '../../actions/pokemonActions';
 
+import './styles.scss';
+
 const DEFAULT_PAGE = 1;
 const POKEMONS_PER_PAGE = 15;
 
@@ -55,10 +57,11 @@ const PokemonList = (props) => {
             return(
                 <div className="list-wrapper">
                     {list?.data.map((el, index) =>
-                        <div key={index} className="pokemon-item">
-                            <p>{el.name}</p>
-                            <Link to={`/pokemon/${el.name}`}>View</Link>
-                        </div>
+                        <Link to={`/pokemon/${el.name}`}>
+                            <div key={index} className="pokemon-item">
+                                <p>{el.name}</p>
+                            </div>
+                        </Link>
                     )}
                 </div>
             );
@@ -73,12 +76,19 @@ const PokemonList = (props) => {
 
     return(
         <div>
-            <div className="search-wrapper">
-                <p>Search: </p>
-                <input type="text" onChange={e => setSearch(e.target.value)}/>
-                <button onClick={() => props.history.push(`/pokemon/${search}`)}>Search</button>
+            <div className="filters-bar">
+                <div className="search">
+                    <p>Search: </p>
+                    <input className="search__input" type="text" onChange={e => setSearch(e.target.value)}/>
+                    <button
+                        className="search__button"
+                        onClick={() => props.history.push(`/pokemon/${search}`)}
+                    >
+                        Search
+                    </button>
+                </div>
+                <FilterByType />
             </div>
-            <FilterByType />
             {ShowData()}
             {pokemonCount &&
                 <ReactPaginate
@@ -87,6 +97,8 @@ const PokemonList = (props) => {
                     marginPagesDisplayed={1}
                     onPageChange={(data) => getList(data.selected + DEFAULT_PAGE)}
                     containerClassName="pagination"
+                    pageLinkClassName="page-link"
+                    renderOnZeroPageCount={null}
                 />
             }
         </div>

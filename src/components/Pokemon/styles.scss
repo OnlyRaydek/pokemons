@@ -1,0 +1,15 @@
+.poke {
+    width: 90%;
+    margin: auto;
+}
+  
+.pokemon-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pokemon-wrapper .item {
+    width: 30%;
+}
+  
