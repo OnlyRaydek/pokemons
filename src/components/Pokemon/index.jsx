@@ -6,27 +6,28 @@ import { GetPokemon } from '../../actions/pokemonActions';
 import './styles.scss';
 
 const Pokemon = (props) => {
-    const pokemonName = props.match.params.pokemon;
     const dispatch = useDispatch();
     const pokemonState = useSelector(state => state.Pokemon);
+    const pokemonName = props.match.params.pokemon;
 
     useEffect(() => {
         dispatch(GetPokemon(pokemonName));
     }, []);
 
-    const ShowData = () => {
-        if (pokemonState.data[pokemonName]) {
-            const pokeData = pokemonState.data[pokemonName];
+    const pokemonInfo = pokemonState.data[pokemonName];
 
-            return(
+    return(
+        <div className="poke">
+            <h1>{pokemonName}</h1>
+            {pokemonInfo &&
                 <div className="pokemon-wrapper">
                     <div className="item">
-                        <h1>Sprites</h1>
-                        <img src={pokeData.sprites.front_default} alt=""/>
+                        <h1>Picture</h1>
+                        <img src={pokemonInfo.sprites.front_default} alt=""/>
                     </div>
                     <div className="item">
                         <h1>Stats</h1>
-                        {pokeData.stats.map((el, index) =>
+                        {pokemonInfo.stats.map((el, index) =>
                             <div key={index}>
                                 <p>{el.stat.name} {el.base_stat}</p>
                             </div>
@@ -34,31 +35,16 @@ const Pokemon = (props) => {
                     </div>
                     <div className="item">
                         <h1>Abilities</h1>
-                        {pokeData.abilities.map((el, index) =>
+                        {pokemonInfo.abilities.map((el, index) =>
                             <div key={index}>
                                 <p>{el.ability.name}</p>
                             </div>
                         )}
                     </div>
                 </div>
-            );
-        }
-
-        if (pokemonState.loading) {
-            return <p>Loading...</p>;
-        }
-
-        if (pokemonState.errorMsg !== '') {
-            return <p>{pokemonState.errorMsg}</p>;
-        }
-
-        return <p>error getting pokemon</p>;
-    };
-
-    return(
-        <div className="poke">
-            <h1>{pokemonName}</h1>
-            {ShowData()}
+            }
+            {pokemonState.loading && <p>Loading...</p>}
+            {pokemonState.errorMsg !== '' && <p>error getting pokemon</p>}
         </div>
     );
 };
