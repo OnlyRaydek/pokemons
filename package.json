@@ -1,5 +1,5 @@
 {
-  "name": "pokedex",
+  "name": "pokemons-app",
   "version": "0.1.0",
   "private": true,
   "homepage": "https://onlyraydek.github.io/pokemons",
@@ -12,6 +12,7 @@
     "@types/react": "18.0.5",
     "@types/react-dom": "18.0.0",
     "axios": "^0.21.1",
+    "eslint-config-react-app": "^7.0.1",
     "react": "^18.2.0",
     "react-bootstrap": "^1.5.0",
     "react-dom": "^18.2.0",
@@ -30,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint \"src/**/*.{js,jsx}\"",
+    "lint:fix": "eslint \"src/**/*.{js,jsx}\" --fix"
   },
   "eslintConfig": {
     "extends": [
@@ -60,6 +63,7 @@
     "@typescript-eslint/eslint-plugin": "5.19.0",
     "@typescript-eslint/parser": "5.26.0",
     "@webpack-cli/serve": "1.6.1",
+    "babel-eslint": "^10.1.0",
     "babel-loader": "8.2.0",
     "clean-webpack-plugin": "4.0.0",
     "compression-webpack-plugin": "9.2.0",
@@ -68,6 +72,9 @@
     "css-minimizer-webpack-plugin": "3.4.1",
     "eslint": "^8.13.0",
     "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin": "^1.0.1",
+    "eslint-plugin-eslint-plugin": "^5.0.6",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-prettier": "4.0.0",
@@ -77,6 +84,7 @@
     "gh-pages": "^4.0.0",
     "html-webpack-plugin": "5.5.0",
     "image-webpack-loader": "8.1.0",
+    "prettier": "^2.8.1",
     "react-select": "^5.7.0",
     "sass": "^1.56.2",
     "source-map-loader": "1.0.0",

@@ -12,7 +12,6 @@ const Pokemon = (props) => {
 
     useEffect(() => {
         dispatch(GetPokemon(pokemonName));
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const ShowData = () => {
@@ -27,11 +26,19 @@ const Pokemon = (props) => {
                     </div>
                     <div className="item">
                         <h1>Stats</h1>
-                        {pokeData.stats.map(el => <p>{el.stat.name} {el.base_stat}</p>)}
+                        {pokeData.stats.map((el, index) =>
+                            <div key={index}>
+                                <p>{el.stat.name} {el.base_stat}</p>
+                            </div>
+                        )}
                     </div>
                     <div className="item">
                         <h1>Abilities</h1>
-                        {pokeData.abilities.map(el => <p>{el.ability.name}</p>)}
+                        {pokeData.abilities.map((el, index) =>
+                            <div key={index}>
+                                <p>{el.ability.name}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             );

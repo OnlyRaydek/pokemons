@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable new-cap */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -55,10 +54,10 @@ const PokemonList = (props) => {
 
         if (list?.data) {
             return(
-                <div className="list-wrapper">
+                <div className="pokemon-list">
                     {list?.data.map((el, index) =>
-                        <Link to={`/pokemon/${el.name}`}>
-                            <div key={index} className="pokemon-item">
+                        <Link to={`/pokemon/${el.name}`} key={index}>
+                            <div className="pokemon-item">
                                 <p>{el.name}</p>
                             </div>
                         </Link>
