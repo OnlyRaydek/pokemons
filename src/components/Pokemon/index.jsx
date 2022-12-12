@@ -44,7 +44,7 @@ const Pokemon = (props) => {
                 </div>
             }
             {pokemonState.loading && <p>Loading...</p>}
-            {pokemonState.errorMsg !== '' && <p>error getting pokemon</p>}
+            {pokemonState.errorMsg !== '' && <p>Error getting pokemon</p>}
         </div>
     );
 };

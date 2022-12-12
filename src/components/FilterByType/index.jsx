@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 
@@ -6,12 +6,11 @@ import { GetPokemonList, GetPokemonTypes, GetPokemonListByType } from '../../act
 
 import './styles.scss';
 
-const DEFAULT_OPTIONS = { value: 'All', label: 'All', url: 'https://pokeapi.co/api/v2/pokemon/' };
 
-const FilterByType = () => {
+const FilterByType = ({ defaultOptions, selectedOption, setSelectedOption }) => {
     const dispatch = useDispatch();
     const pokemonTypes = useSelector(state => state.PokemonTypes);
-    const [selectedOption, setSelectedOption] = useState(DEFAULT_OPTIONS);
+    
 
     useEffect(() => {
         dispatch(GetPokemonTypes());
@@ -33,7 +32,7 @@ const FilterByType = () => {
         return { value: el.name, label: el.name.toUpperCase(), url: el.url}
     });
 
-    const options = [DEFAULT_OPTIONS, ...pokemonTypesOptions]
+    const options = [defaultOptions, ...pokemonTypesOptions]
 
     return (
         <div>

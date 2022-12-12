@@ -12,22 +12,21 @@ import './styles.scss';
 
 const DEFAULT_PAGE = 1;
 const POKEMONS_PER_PAGE = 15;
+const DEFAULT_OPTIONS = { value: 'All', label: 'All', url: 'https://pokeapi.co/api/v2/pokemon/' };
 
 const PokemonList = (props) => {
     const dispatch = useDispatch();
     const pokemonList = useSelector(state => state.PokemonList);
-    const pokemonListByType = useSelector(state => state.PokemonListByTypeReducer);
     
     const [search, setSearch] = useState('');
     const [list, setList] = useState([]);
     const [pokemonCount, setPokemonCount] = useState(0);
+    const [selectedOption, setSelectedOption] = useState(DEFAULT_OPTIONS);
 
     const getList = (page = DEFAULT_PAGE) => {
         dispatch(GetPokemonList(page));
     };
     
-    console.log(pokemonList);
-    console.log(pokemonListByType);
     
     useEffect(() => {
         getList(DEFAULT_PAGE);
@@ -41,13 +40,8 @@ const PokemonList = (props) => {
         }
     }, [pokemonList]);
 
-    // useEffect(() => {
-    //     if (pokemonListByType.count) {
-    //         setList(pokemonListByType);
-    //     }
-    // }, [pokemonListByType]);
 
-    const ShowData = () => {
+    const ShowList = () => {
         if (pokemonList.loading) {
             return <p>Loading...</p>;
         }
@@ -86,9 +80,13 @@ const PokemonList = (props) => {
                         Search
                     </button>
                 </div>
-                <FilterByType />
+                <FilterByType
+                    defaultOptions={DEFAULT_OPTIONS}
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
+                />
             </div>
-            {ShowData()}
+            {ShowList()}
             {pokemonCount &&
                 <ReactPaginate
                     pageCount={Math.ceil(pokemonCount / POKEMONS_PER_PAGE)}
